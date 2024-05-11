@@ -16,10 +16,15 @@ public class OperacaoLogica {
         int nota4 = 80;
         int media = 0;
         media = (nota1 + nota2 + nota3 + nota4) / 4;
-        if (media >= 70){
+        /* Condiçoes Logicas com IF e ELSE*/
+        /*if (media >= 70){
             System.out.println("Aluno Aprovado: " +media);
         }else{
             System.out.println("Aluno reprovado"+ media);
-        }
+        }*/
+
+        /*Operadores ternários são utilizidaos para micro validaçoes*/
+        String saidaResultado = media >= 70? "Aluno Aprovado" : "Aluno reprovado";
+        System.out.println(saidaResultado);
     }
 }
