@@ -24,7 +24,7 @@ public class OperacaoLogica {
         }*/
 
         /*Operadores ternários são utilizidaos para micro validaçoes*/
-        String saidaResultado = media >= 70? "Aluno Aprovado" : "Aluno reprovado";
+        String saidaResultado = media >= 70? "Aluno Aprovado" : (media >= 40 && media <=69)?"Aluno em recuperação" : "Aluno reprovado";
         System.out.println(saidaResultado);
     }
 }
