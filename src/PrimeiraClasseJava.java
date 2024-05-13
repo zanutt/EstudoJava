@@ -1,3 +1,5 @@
+package ConhecendoLinguagem.src;
+
 public class PrimeiraClasseJava {
 
     /* Main é o metodo auto executavel do java */
