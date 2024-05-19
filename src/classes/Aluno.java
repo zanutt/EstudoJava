@@ -1,5 +1,7 @@
 package ConhecendoLinguagem.src.classes;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Aluno {
@@ -11,13 +13,18 @@ public class Aluno {
     String nomeMae;
     String nomePai;
     String dataMatricula;
-    double nota1;
-    double nota2;
-    double nota3;
-    double nota4;
 
+    private List <Disciplina> disciplinas = new ArrayList<Disciplina>();
 
-/*Método set recebe dados*/
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    /*Método set recebe dados*/
     public void setNome(String nome){
         this.nome = nome;
     }
@@ -81,40 +88,17 @@ public class Aluno {
         this.dataMatricula = dataMatricula;
     }
 
-    public double getNota1() {
-        return nota1;
-    }
 
-    public void setNota1(double nota1) {
-        this.nota1 = nota1;
-    }
 
-    public double getNota2() {
-        return nota2;
-    }
-
-    public void setNota2(double nota2) {
-        this.nota2 = nota2;
-    }
-
-    public double getNota3() {
-        return nota3;
-    }
-
-    public void setNota3(double nota3) {
-        this.nota3 = nota3;
-    }
-
-    public double getNota4() {
-        return nota4;
-    }
-
-    public void setNota4(double nota4) {
-        this.nota4 = nota4;
-    }
     /*Método que rotorna media do aluno*/
     public double getMediaNota(){
-        return (nota1 + nota2 + nota3 + nota4) / 4;
+
+        double somaNotas = 0.0;
+
+        for (Disciplina disciplina : disciplinas){
+            somaNotas += disciplina.getNota();
+        }
+        return somaNotas / disciplinas.size();
     }
     public boolean getAlunoAprovado(){
         double media = this.getMediaNota();
@@ -136,12 +120,10 @@ public class Aluno {
                 ", nomeMae='" + nomeMae + '\'' +
                 ", nomePai='" + nomePai + '\'' +
                 ", dataMatricula='" + dataMatricula + '\'' +
-                ", nota1=" + nota1 +
-                ", nota2=" + nota2 +
-                ", nota3=" + nota3 +
-                ", nota4=" + nota4 +
+                ", disciplinas=" + disciplinas +
                 '}';
     }
+
     /*Cpf Equals :D*/
     @Override
     public boolean equals(Object o) {

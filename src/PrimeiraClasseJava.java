@@ -1,6 +1,7 @@
 package ConhecendoLinguagem.src;
 
 import ConhecendoLinguagem.src.classes.Aluno;
+import ConhecendoLinguagem.src.classes.Disciplina;
 
 import javax.swing.*;
 
@@ -16,10 +17,6 @@ public class PrimeiraClasseJava {
         String mae = JOptionPane.showInputDialog("Nome da mãe?");
         String pai = JOptionPane.showInputDialog("Nome do pai?");
         String matricula = JOptionPane.showInputDialog("Data da matricula");
-        String nota1 = JOptionPane.showInputDialog("Qual a primeira nota?");
-        String nota2 = JOptionPane.showInputDialog("Qual a segunda nota?");
-        String nota3 = JOptionPane.showInputDialog("Qual a terceira nota?");
-        String nota4 = JOptionPane.showInputDialog("Qual a quarta nota?");
 
         Aluno aluno1 = new Aluno();
         aluno1.setNome(nome);
@@ -30,12 +27,32 @@ public class PrimeiraClasseJava {
         aluno1.setNomeMae(mae);
         aluno1.setNomePai(pai);
         aluno1.setDataMatricula(matricula);
-        aluno1.setNota1(Double.parseDouble(nota1));
-        aluno1.setNota2(Double.parseDouble(nota2));
-        aluno1.setNota3(Double.parseDouble(nota3));
-        aluno1.setNota4(Double.parseDouble(nota4));
 
-        System.out.println(aluno1.toString()); /*Descriçao do objeto na memoria*/
+        Disciplina disciplina1 = new Disciplina();
+        disciplina1.setDisciplina("Banco de dados");
+        disciplina1.setNota(90);
+
+        aluno1.getDisciplinas().add(disciplina1);
+
+        Disciplina disciplina2 = new Disciplina();
+        disciplina2.setDisciplina("Matematica");
+        disciplina2.setNota(80);
+
+        aluno1.getDisciplinas().add(disciplina2);
+
+        Disciplina disciplina3 = new Disciplina();
+        disciplina3.setDisciplina("JavaScript");
+        disciplina3.setNota(97);
+
+        aluno1.getDisciplinas().add(disciplina3);
+
+        Disciplina disciplina4 = new Disciplina();
+        disciplina4.setDisciplina("HTML");
+        disciplina4.setNota(70);
+
+        aluno1.getDisciplinas().add(disciplina4);
+
+        System.out.println(aluno1); /*Descriçao do objeto na memoria*/
         System.out.println("A média do aluno é = "+ aluno1.getMediaNota());
         System.out.println("Resultado = "+(aluno1.getAlunoAprovado()? "Aprovado" : "Reprovado"));
 
