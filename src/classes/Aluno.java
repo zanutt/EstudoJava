@@ -109,6 +109,19 @@ public class Aluno {
         }
     }
 
+    public String getAlunoAprovado2(){
+        double media = this.getMediaNota();
+        if (media >= 50){
+            if (media >= 70){
+                return "Aluno esta aprovado";
+            }else {
+                return "Aluno esta em recuperação";
+            }
+        }else {
+            return "Aluno esta Reprovado";
+        }
+    }
+
     @Override
     public String toString() {
         return "Aluno{" +
