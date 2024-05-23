@@ -57,14 +57,35 @@ public class PrimeiraClasseJava {
         }
     alunos.add(aluno1);
     }
-
-        for (Aluno aluno : alunos){
-            System.out.println(aluno); /*Descriçao do objeto na memoria*/
-            System.out.println("A média do aluno é = "+ aluno.getMediaNota());
-            System.out.println("Resultado = "+(aluno.getAlunoAprovado2()));
-            System.out.println("--------------------------------------------------------------");
+/*Listando alunos e removendo por nomes*/
+//        for (Aluno aluno : alunos) {
+//            if (aluno.getNome().equalsIgnoreCase("zanutt")) {
+//                alunos.remove(aluno);
+//                break;
+//            }else{
+//                System.out.println(aluno); /*Descriçao do objeto na memoria*/
+//                System.out.println("A média do aluno é = "+ aluno.getMediaNota());
+//                System.out.println("Resultado = "+(aluno.getAlunoAprovado2()));
+//                System.out.println("--------------------------------------------------------------");
+//            }
+//        }
+//        for (Aluno aluno : alunos){
+//            System.out.println("Alunos na lista");
+//            System.out.println(aluno.getNome());
+//            System.out.println("Suas materias são: ");
+//            for (Disciplina disciplina : aluno.getDisciplinas()){
+//                System.out.println(disciplina.getDisciplina());
+//            }
+//        }
+        for (int pos = 0; pos < alunos.size(); pos++){
+            Aluno aluno = alunos.get(pos);
+            System.out.println("Aluno= " +aluno.getNome());
+            System.out.println("Media do aluno = "+ aluno.getMediaNota());
+            System.out.println("Resultado = "+ aluno.getAlunoAprovado2());
+            System.out.println("--------------------------------------------------------------------");
+            for (Disciplina disc : aluno.getDisciplinas()){
+                System.out.println("Materia = " + disc.getDisciplina() + "Nota = " + disc.getNota());
+            }
         }
-
-
     }
 }
