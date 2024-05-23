@@ -79,12 +79,24 @@ public class PrimeiraClasseJava {
 //        }
         for (int pos = 0; pos < alunos.size(); pos++){
             Aluno aluno = alunos.get(pos);
+            if (aluno.getNome().equalsIgnoreCase("zanutt")){
+                Aluno trocar = new Aluno();
+                trocar.setNome("Aluno Foi trocado");
+
+                Disciplina disciplina = new Disciplina();
+                disciplina.setDisciplina("Math");
+                disciplina.setNota(90);
+
+                trocar.getDisciplinas().add(disciplina);
+                alunos.set(pos, trocar);
+                aluno = alunos.get(pos);
+            }
             System.out.println("Aluno= " +aluno.getNome());
             System.out.println("Media do aluno = "+ aluno.getMediaNota());
             System.out.println("Resultado = "+ aluno.getAlunoAprovado2());
             System.out.println("--------------------------------------------------------------------");
             for (Disciplina disc : aluno.getDisciplinas()){
-                System.out.println("Materia = " + disc.getDisciplina() + "Nota = " + disc.getNota());
+                System.out.println("Materia = " + disc.getDisciplina() + " Nota = " + disc.getNota());
             }
         }
     }
