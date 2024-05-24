@@ -1,5 +1,7 @@
 package ConhecendoLinguagem.src.classes;
 
+import ConhecendoLinguagem.src.constantes.StatusAluno;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -113,12 +115,12 @@ public class Aluno {
         double media = this.getMediaNota();
         if (media >= 50){
             if (media >= 70){
-                return "Aluno esta aprovado";
+                return StatusAluno.APROVADO;
             }else {
-                return "Aluno esta em recuperação";
+                return StatusAluno.RECUPERACAO;
             }
         }else {
-            return "Aluno esta Reprovado";
+            return StatusAluno.REPROVADO;
         }
     }
 
