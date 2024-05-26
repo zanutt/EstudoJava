@@ -1,3 +1,5 @@
+package EstudoEOOP;
+
 public class VariChar {
     public static void main(String[] args){
         /*CHAR representa uma letra ou caracter*/

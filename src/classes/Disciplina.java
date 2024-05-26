@@ -1,5 +1,4 @@
-package ConhecendoLinguagem.src.classes;
-
+package classes;
 import java.util.Objects;
 
 public class Disciplina {

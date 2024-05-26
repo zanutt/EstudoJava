@@ -1,4 +1,4 @@
-package ConhecendoLinguagem.src;
+package EstudoEOOP;
 
 import ConhecendoLinguagem.src.classes.Aluno;
 import ConhecendoLinguagem.src.classes.Disciplina;

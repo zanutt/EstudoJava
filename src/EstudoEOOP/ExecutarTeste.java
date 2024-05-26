@@ -1,3 +1,5 @@
+package EstudoEOOP;
+
 import java.math.BigDecimal;
 
 public class ExecutarTeste {
@@ -16,7 +18,7 @@ public class ExecutarTeste {
         produto2.setValor(BigDecimal.valueOf(450.00));
 
         Venda venda = new Venda();
-        venda.setDescricaoVenda("Venda 1");
+        venda.setDescricaoVenda("EstudoEOOP.Venda 1");
         venda.setEnderecoEntrega("Entrega via E-mail");
         venda.setId(10L);
         venda.setNomeCliente("Matheus");
@@ -25,7 +27,7 @@ public class ExecutarTeste {
         venda.getListaProdutos().add(produto2);
 
 
-        System.out.println("Descrição da Venda : "
+        System.out.println("Descrição da EstudoEOOP.Venda : "
                 + venda.getDescricaoVenda() + " e o total: "
                     + venda.totalVenda());
 

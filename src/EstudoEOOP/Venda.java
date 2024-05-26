@@ -1,3 +1,5 @@
+package EstudoEOOP;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +81,7 @@ public class Venda {
 
     @Override
     public String toString() {
-        return "Venda{" +
+        return "EstudoEOOP.Venda{" +
                 "id=" + id +
                 ", descricaoVenda='" + descricaoVenda + '\'' +
                 ", nomeCliente='" + nomeCliente + '\'' +

@@ -1,4 +1,4 @@
-package ConhecendoLinguagem.src;
+package EstudoEOOP;
 
 public class EstruturaDeRepeticao {
     public static void main(String[] args){

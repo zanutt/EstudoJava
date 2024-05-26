@@ -1,4 +1,4 @@
-package ConhecendoLinguagem.src;
+package EstudoEOOP;
 
 import javax.swing.*;
 

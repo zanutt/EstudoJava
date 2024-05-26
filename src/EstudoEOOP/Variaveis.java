@@ -1,11 +1,13 @@
+package EstudoEOOP;
+
 public class Variaveis {
 
     /* Variavel global acessivel a todos */
     static int idadeGlobal = 35;
 
     public static void main(String[] args){
-        /* Variaveis Local pois estao declaradas dentro do método */
-        /* Variaveis inteiras */
+        /* EstudoEOOP.Variaveis Local pois estao declaradas dentro do método */
+        /* EstudoEOOP.Variaveis inteiras */
         int maiorIdade = 18;
         int idosoIdade= 60;
 

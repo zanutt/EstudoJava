@@ -1,3 +1,5 @@
+package EstudoEOOP;
+
 public class OperacaoLogica {
     public static void main(String[] args) {
 //        int mediaAluno = 70;

@@ -1,20 +1,17 @@
-package ConhecendoLinguagem.src.classes;
+package classes;
 
 import ConhecendoLinguagem.src.constantes.StatusAluno;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Aluno {
-    String nome;
-    int idade;
-    String dataNascimento;
-    String registroGeral;
-    String numeroCpf;
-    String nomeMae;
-    String nomePai;
+public class Aluno extends Pessoa {
+
     String dataMatricula;
+    String nomeEscola;
+    String serieMatriculado;
 
     private List <Disciplina> disciplinas = new ArrayList<Disciplina>();
 

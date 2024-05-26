@@ -1,3 +1,5 @@
+package EstudoEOOP;
+
 import java.math.BigDecimal;
 
 public class Produto {
@@ -34,7 +36,7 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto{" +
+        return "EstudoEOOP.Produto{" +
                 "id=" + id +
                 ", nomeProduto='" + nomeProduto + '\'' +
                 ", valor=" + valor +
