@@ -1,10 +1,23 @@
 package classes;
 
-public class Diretor extends Pessoa{
+import interfaces.PermitirAcesso;
+
+public class Diretor extends Pessoa implements PermitirAcesso {
 
     private String registroEducacao;
     private String tempoDirecao;
     private String titulacao;
+
+    private String login;
+    private String senha;
+
+    public Diretor (String login, String senha){
+        this.login = login;
+        this.senha = senha;
+    }
+
+    public Diretor(){
+    }
 
     public String getRegistroEducacao() {
         return registroEducacao;
@@ -29,5 +42,21 @@ public class Diretor extends Pessoa{
     public void setTitulacao(String titulacao) {
         this.titulacao = titulacao;
     }
+
+    /*Metodo de contrato de auth*/
+
+    @Override
+    public boolean autenticar(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
+        return autenticar();
+    }
+
+    @Override
+    public boolean autenticar() {
+        return login.equals("znt") && senha.equals("123");
+    }
+
+
 
 }
