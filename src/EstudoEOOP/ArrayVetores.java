@@ -37,36 +37,24 @@ public class ArrayVetores {
         disciplina4.setNota(notasPython);
         aluno.getDisciplinas().add(disciplina4);
 
+        //---------------------------------------------------------------------------
 
-        System.out.println("Nome do Aluno = " + aluno.getNome() + " cpf: " + aluno.getNumeroCpf());
-        System.out.println("--------------------Disciplinas do Aluno--------------------");
-        for (Disciplina d : aluno.getDisciplinas()){
+        Aluno[] arrayAluno = new Aluno[1];
 
-            System.out.println("Disciplina: "+ d.getDisciplina());
-            System.out.println("As notas da disciplina são: ");
+        arrayAluno[0] = aluno;
 
-            double notaMin = 0.0;
-            double notaMax = 0.0;
-            for (int pos =0; pos < d.getNota().length; pos++){
-                System.out.println("Nota " + (pos+1) + ": "+ d.getNota()[pos]);
-                if (pos == 0){
-                    notaMax = d.getNota()[pos];
-                }else{
-                    if (d.getNota()[pos]> notaMax){
-                        notaMax = d.getNota()[pos];
-                    }
-                }
-                if (pos == 0){
-                    notaMin = d.getNota()[pos];
-                }else{
-                    if (d.getNota()[pos]< notaMin){
-                        notaMin = d.getNota()[pos];
-                    }
+        for (int pos = 0; pos < arrayAluno.length; pos++){
+
+            System.out.println("O nome do aluno é: " + arrayAluno[pos].getNome());
+
+            for (Disciplina d : arrayAluno[pos].getDisciplinas()){
+                System.out.println("Nome da Disciplina: " + d.getDisciplina());
+
+                for (int posnota = 0; posnota < d.getNota().length; posnota++){
+                    System.out.println("Nota " + (posnota+1) + ": " + d.getNota()[posnota]);
                 }
             }
 
-            System.out.println("A maior nota da Disciplina " + d.getDisciplina() + " é: " + notaMax);
-            System.out.println("A menor nota da Disciplina " + d.getDisciplina() + " é: " + notaMin);
         }
 
     }
