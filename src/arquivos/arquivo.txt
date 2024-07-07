@@ -1,0 +1,3 @@
+znt;pessoa1@hotmail.com;50
+ceara;pessoa2@hotmail.com;30
+daibo;pessoa3@hotmail.com;70
