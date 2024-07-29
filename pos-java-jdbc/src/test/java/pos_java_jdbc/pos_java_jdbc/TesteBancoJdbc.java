@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import conexao.jdbc.SingleConnection;
 import dao.UserPosDAO;
+import model.BeanUserFone;
+import model.Telefone;
 import model.Userposjava;
 
 public class TesteBancoJdbc {
@@ -83,6 +85,40 @@ public class TesteBancoJdbc {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testInsertTel() {
+		Telefone telefone = new Telefone();
+		
+		telefone.setNumero("(85) 78547854");
+		telefone.setTipo("Trabalho");
+		telefone.setUsuario(1L);
+		
+		UserPosDAO dao = new UserPosDAO();
+		dao.salvarTelefone(telefone);
+	}
+	
+	@Test
+	public void testeCarregaFonesUser() {
+		
+		UserPosDAO dao = new UserPosDAO();
+		
+		List<BeanUserFone> beanUserFones = dao.listaUserfone(1L);
+		
+		for (BeanUserFone beanUserFone : beanUserFones) {
+			System.out.println(beanUserFone);
+			System.out.println("-------------------------------------");
+		}
+		
+	}
+	
+	@Test
+	public void testeDeleteUserFone() {
+		
+		UserPosDAO dao = new UserPosDAO();
+		dao.deleteFonesPorUser(4L);
+		
 	}
 
 }
