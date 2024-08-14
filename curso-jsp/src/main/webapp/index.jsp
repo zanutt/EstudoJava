@@ -8,11 +8,30 @@
 </head>
 <body>
 
-<h1>Bem vindo ao curso de JSP</h1>
+	<h1>Bem vindo ao curso de JSP</h1>
 
-<%
-	out.print("Seu sucesso garantido");
-%>
+
+
+	<form action="ServletLogin" method="post">
+
+		<table>
+			<tr>
+				<td>Login</td>
+				<td><input name="login" type="text"></td>
+			</tr>
+
+			<tr>
+				<td>Senha</td>
+				<td><input name="senha" type="password"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Enviar" /></td>
+			</tr>
+		</table>
+
+<h4>${msg}</h4>
+
+	</form>
 
 </body>
 </html>
