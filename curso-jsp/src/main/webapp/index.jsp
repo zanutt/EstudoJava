@@ -14,6 +14,9 @@
 
 	<form action="ServletLogin" method="post">
 
+		<input type="hidden" value="<%=request.getParameter("url")%>"
+			name="url">
+
 		<table>
 			<tr>
 				<td>Login</td>
@@ -29,7 +32,7 @@
 			</tr>
 		</table>
 
-<h4>${msg}</h4>
+		<h4>${msg}</h4>
 
 	</form>
 
