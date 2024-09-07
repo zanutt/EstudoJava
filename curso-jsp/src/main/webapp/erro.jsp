@@ -8,8 +8,13 @@
 </head>
 <body>
 <h1>Mensagem de Erro. entre contato com a equipe de suporte do sistema</h1>
-<%
-	out.print(request.getAttribute("msg"));
+<% 
+   String mensagem = (String) request.getAttribute("msg");
+   if (mensagem != null) {
+       out.print(mensagem);
+   } else {
+       out.print("Erro desconhecido.");
+   }
 %>
 </body>
 </html>

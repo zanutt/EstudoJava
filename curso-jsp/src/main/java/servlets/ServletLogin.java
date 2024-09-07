@@ -80,9 +80,9 @@ public class ServletLogin extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
-			request.setAttribute("msg", e.getMessage());
-			redirecionar.forward(request, response);
+		    request.setAttribute("msg", "Erro ao tentar fazer login: " + e.getMessage());
+		    RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
+		    redirecionar.forward(request, response);
 		}
 
 	}

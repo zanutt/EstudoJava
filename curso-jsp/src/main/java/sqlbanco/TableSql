@@ -24,3 +24,25 @@ ALTER TABLE IF EXISTS public.model_login
 INSER INTO public.model_login(
 		login, senha)
 	VALUES ('admin', 'admin');   
+	
+	
+	adcionando novas celulas na tabela de usuarios
+	alter table model_login add id serial primary key;
+	alter table model_login add nome character varying(300);
+	alter table model_login add email character varying(300);
+	
+	update model_login SET nome ='';
+alter table model_login alter column nome set not null;
+
+
+update model_login SET email ='';
+alter table model_login alter column email set not null;
+
+alter table model_login alter column login set not null;
+alter table model_login alter column senha set not null;
+
+
+select * from model_login
+
+
+
