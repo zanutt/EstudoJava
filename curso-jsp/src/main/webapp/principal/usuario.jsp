@@ -46,6 +46,9 @@
 														<h4 class="sub-title">Cadastro de Usuarios</h4>
 
 														<form class="form-material" action="<%=request.getContextPath() %>/ServletUsuarioController" method="post" id="formUser">
+														
+														<input type ="hidden" name="acao" id="acao" value="">
+														
                                                             <div class="form-group form-default form-static-label">
                                                                 <input type="text" name="id" id="id" class="form-control" readonly="readonly" value="${modelLogin.id}">
                                                                 <span class="form-bar"></span>
@@ -71,9 +74,9 @@
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Senha</label>
                                                             </div>
-                                                            <button class="btn btn-primary waves-effect waves-light" onclick="limparForm();">Novo</button>
+                                                            <button type="button" class="btn btn-primary waves-effect waves-light" onclick="limparForm();">Novo</button>
                                                             <button class="btn btn-sucess waves-effect waves-light">Salvar</button> 
-                                                            <button class="btn btn-info waves-effect waves-light">Excluir</button>                                                                                                                         
+                                                            <button type="button" class="btn btn-info waves-effect waves-light" onclick="criarDelete();" >Excluir</button>                                                                                                                         
                                                         </form>
 													</div>
 												</div>
@@ -97,6 +100,14 @@
 	<!-- Required Jquery -->
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
 	<script type="text/javascript">
+	
+	function criarDelete(){
+	    document.getElementById("acao").value = 'deletar';  // Define a ação
+	    document.getElementById("formUser").method = 'get'; // Altera o método do form para GET
+	    document.getElementById("formUser").submit(); // Submete o formulário
+	}
+
+	
 	function limparForm(){
 		var elementos = document.getElementById("formUser").elements;/*Retorna os elementos html dentro do form*/
 		for(p = 0; p < elementos.length; p++){
