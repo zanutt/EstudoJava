@@ -45,8 +45,8 @@
 													<div class="card-block">
 														<h4 class="sub-title">Cadastro de Usuarios</h4>
 
-														<form class="form-material" action="<%=request.getContextPath() %>/ServletUsuarioController" method="post">
-                                                            <div class="form-group form-default">
+														<form class="form-material" action="<%=request.getContextPath() %>/ServletUsuarioController" method="post" id="formUser">
+                                                            <div class="form-group form-default form-static-label">
                                                                 <input type="text" name="id" id="id" class="form-control" readonly="readonly" value="${modelLogin.id}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">ID</label>
@@ -71,7 +71,7 @@
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Senha</label>
                                                             </div>
-                                                            <button class="btn btn-primary waves-effect waves-light">Novo</button>
+                                                            <button class="btn btn-primary waves-effect waves-light" onclick="limparForm();">Novo</button>
                                                             <button class="btn btn-sucess waves-effect waves-light">Salvar</button> 
                                                             <button class="btn btn-info waves-effect waves-light">Excluir</button>                                                                                                                         
                                                         </form>
@@ -96,6 +96,14 @@
 
 	<!-- Required Jquery -->
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
+	<script type="text/javascript">
+	function limparForm(){
+		var elementos = document.getElementById("formUser").elements;/*Retorna os elementos html dentro do form*/
+		for(p = 0; p < elementos.length; p++){
+			elementos[p].value='';
+		}
+	}
+	</script>
 </body>
 
 </html>
