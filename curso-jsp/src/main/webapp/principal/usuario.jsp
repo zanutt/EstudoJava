@@ -127,7 +127,22 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <div class="input-group mb-3">
+        	<input type="text" class="form-control" placeholder="Nome" id="nomeBusca" aria-label="Usuario" aria-describedby="basic-addon2">
+        	<div class="btn btn-success" type="button" onclick="buscarUsuario()">Buscar
+        	</div>
+        </div>
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Ver</th>      
+    </tr>
+  </thead>
+  <tbody>    
+  </tbody>
+</table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -137,6 +152,14 @@
 </div>
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
 	<script type="text/javascript">
+	
+	function buscarUsuario(){
+		var nomeBusca = document.getElementById("nomeBusca").value;
+		
+		if(nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != ''){//Verifica se o nome nao esta vazio, existe um valor para ele
+			x
+		}
+	}
 	
 	function criaDeleteComAjax(){
 	    if (confirm('Deseja realmente excluir os dados?')){
