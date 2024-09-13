@@ -23,8 +23,23 @@ public class ServletUsuarioController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try {
-			String acao = request.getParameter("acao");
+		String acao = request.getParameter("acao");
+		if (acao != null && acao.equalsIgnoreCase("deletar")) {
+		    String idUser = request.getParameter("id");
+
+		    if (idUser != null && !idUser.isEmpty()) {
+		        try {
+					daoUsuarioRepository.deletarUser(idUser);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		        response.getWriter().write("Usuário excluído com sucesso!"); 
+		        return;  
+		    }
+		}
+
+		/*try {
+			
 
 			if (acao != null && acao.equalsIgnoreCase("deletar")) {
 				String idUser = request.getParameter("id");
@@ -40,7 +55,7 @@ public class ServletUsuarioController extends HttpServlet {
 			RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
 			request.setAttribute("msg", e.getMessage());
 			redirecionar.forward(request, response);
-		}
+		}  Delete nao por Ajax */
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
