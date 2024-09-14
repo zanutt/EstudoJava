@@ -132,7 +132,8 @@
         	<div class="btn btn-success" type="button" onclick="buscarUsuario()">Buscar
         	</div>
         </div>
-        <table class="table">
+        <div style="height:300px;overflow:scroll;">
+        <table class="table" id="tabelaResultado">
   <thead>
     <tr>
       <th scope="col">Id</th>
@@ -144,11 +145,13 @@
   </tbody>
 </table>
       </div>
+      <span id="totalresultado"></span>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
+</div>
 </div>
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
 	<script type="text/javascript">
@@ -157,7 +160,25 @@
 		var nomeBusca = document.getElementById("nomeBusca").value;
 		
 		if(nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != ''){//Verifica se o nome nao esta vazio, existe um valor para ele
-			x
+
+		    var urlAction = document.getElementById('formUser').action;		    
+		    
+		    $.ajax({
+		            method: "get", 
+		            url: urlAction,
+		            data: "nomeBusca=" + nomeBusca + "&acao=buscarUsuarioAjax",
+		            success: function(response){
+
+		        	var json = JSON.parse(response);
+		        		$('#tabelaResultado > tbody > tr').remove();
+		        		for(var p = 0; p< json.length; p++){
+							$('#tabelaResultado > tbody').append('<tr><td>'+json[p].id+'</td><td>'+json[p].nome+'</td><td><button type="button" class="btn btn-info">Ver</button></td></tr>');
+		        		}
+		        		document.getElementById('totalresultado').textContent = 'Resultados: '+json.length;
+		            }
+		        }).fail(function(xhr, status, errorThrown){
+		            alert('Erro ao buscar o usuário por nome: ' + xhr.responseText);
+		        });
 		}
 	}
 	
@@ -169,7 +190,7 @@
 	        $.ajax({
 	            method: "get", 
 	            url: urlAction,
-	            data: "id=" + idUser + "&acao=deletar",
+	            data: "id=" + idUser + "&acao=deletarajax",
 	            success: function(response){
 	        		limparForm()
 	                alert(response); 

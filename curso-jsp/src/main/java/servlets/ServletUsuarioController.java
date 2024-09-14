@@ -9,6 +9,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
 import java.io.IOException;
+import java.util.List;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.DAOUsuarioRepository;
 
@@ -23,39 +26,47 @@ public class ServletUsuarioController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String acao = request.getParameter("acao");
-		if (acao != null && acao.equalsIgnoreCase("deletar")) {
-		    String idUser = request.getParameter("id");
+		try {
+			String acao = request.getParameter("acao");
 
-		    if (idUser != null && !idUser.isEmpty()) {
-		        try {
+			if (acao != null && acao.equalsIgnoreCase("deletarajax")) {
+				String idUser = request.getParameter("id");
+
+				if (idUser != null && !idUser.isEmpty()) {
+
 					daoUsuarioRepository.deletarUser(idUser);
-				} catch (Exception e) {
-					e.printStackTrace();
+					response.getWriter().write("Usuário excluído com sucesso!");					
 				}
-		        response.getWriter().write("Usuário excluído com sucesso!"); 
-		        return;  
-		    }
-		}
 
-		/*try {
-			
-
-			if (acao != null && acao.equalsIgnoreCase("deletar")) {
+			} else if (acao != null && acao.equalsIgnoreCase("deletar")) {
 				String idUser = request.getParameter("id");
 
 				if (idUser != null && !idUser.isEmpty()) {
 					daoUsuarioRepository.deletarUser(idUser);
-					request.setAttribute("msg", "Usuario excluído com sucesso!");					
+					request.setAttribute("msg", "Usuario excluído com sucesso!");
 				}
+
+			} else if (acao != null && acao.equalsIgnoreCase("buscarUsuarioAjax")) {
+				String nomeBusca = request.getParameter("nomeBusca");
+
+				if (nomeBusca != null && !nomeBusca.isEmpty()) {
+					List<ModelLogin> dadosJsonUser =  daoUsuarioRepository.consultaUsuarioList(nomeBusca);
+					
+					ObjectMapper mapper = new ObjectMapper();
+					String json = mapper.writeValueAsString(dadosJsonUser);
+					response.getWriter().write(json);
+
+				} else
+					request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 			}
-			request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			e.printStackTrace();
 			RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
 			request.setAttribute("msg", e.getMessage());
 			redirecionar.forward(request, response);
-		}  Delete nao por Ajax */
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
