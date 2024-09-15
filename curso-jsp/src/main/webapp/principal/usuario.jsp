@@ -156,6 +156,11 @@
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
 	<script type="text/javascript">
 	
+	function verEditar(id){
+	    var urlAction = document.getElementById('formUser').action;
+	    window.location.href = urlAction + '?acao=buscarEditar&id='+id;
+	}
+	
 	function buscarUsuario(){
 		var nomeBusca = document.getElementById("nomeBusca").value;
 		
@@ -172,7 +177,7 @@
 		        	var json = JSON.parse(response);
 		        		$('#tabelaResultado > tbody > tr').remove();
 		        		for(var p = 0; p< json.length; p++){
-							$('#tabelaResultado > tbody').append('<tr><td>'+json[p].id+'</td><td>'+json[p].nome+'</td><td><button type="button" class="btn btn-info">Ver</button></td></tr>');
+							$('#tabelaResultado > tbody').append('<tr><td>'+json[p].id+'</td><td>'+json[p].nome+'</td><td><button type="button" onclick="verEditar('+json[p].id+')" class="btn btn-info">Ver</button></td></tr>');
 		        		}
 		        		document.getElementById('totalresultado').textContent = 'Resultados: '+json.length;
 		            }
