@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
-  <display-name>curso-jsp</display-name>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
-  <filter>
-    <display-name>FilterAutenticacao</display-name>
-    <filter-name>FilterAutenticacao</filter-name>
-    <filter-class>filter.FilterAutenticacao</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>FilterAutenticacao</filter-name>
-    <url-pattern>/FilterAutenticacao</url-pattern>
-  </filter-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletUsuarioController</display-name>
-    <servlet-name>ServletUsuarioController</servlet-name>
-    <servlet-class>servlets.ServletUsuarioController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletUsuarioController</servlet-name>
-    <url-pattern>/ServletUsuarioController</url-pattern>
-  </servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="https://jakarta.ee/xml/ns/jakartaee" 
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" 
+         id="WebApp_ID" version="6.0">
+
+    <display-name>curso-jsp</display-name>
+    
+    <!-- Página de boas-vindas -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    
+    <!-- Filtro de autenticação -->
+    <filter>
+        <filter-name>FilterAutenticacao</filter-name>
+        <filter-class>filter.FilterAutenticacao</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>FilterAutenticacao</filter-name>
+        <url-pattern>/FilterAutenticacao</url-pattern>
+    </filter-mapping>
+
+    <!-- Mapeamento do servlet ServletUsuarioController -->
+    <servlet>
+        <servlet-name>ServletUsuarioController</servlet-name>
+        <servlet-class>servlets.ServletUsuarioController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletUsuarioController</servlet-name>
+        <!-- Mapeamento da URL para o servlet -->
+        <url-pattern>/ServletUsuarioController</url-pattern>
+    </servlet-mapping>
+
 </web-app>
