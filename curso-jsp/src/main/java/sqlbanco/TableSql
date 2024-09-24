@@ -45,4 +45,7 @@ alter table model_login alter column senha set not null;
 select * from model_login
 
 
-
+Alter TABLE model_login add column useradmin boolean not null default false;
+UPDATE public.model_login
+	SET useradmin=true
+	WHERE id =1

@@ -32,6 +32,8 @@
         <servlet-name>ServletUsuarioController</servlet-name>
         <!-- Mapeamento da URL para o servlet -->
         <url-pattern>/ServletUsuarioController</url-pattern>
+        <!-- Novo mapeamento para acessar via principal/usuario -->
+        <url-pattern>/principal/usuario</url-pattern>
     </servlet-mapping>
 
 </web-app>

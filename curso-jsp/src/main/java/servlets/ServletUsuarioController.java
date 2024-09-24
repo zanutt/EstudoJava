@@ -15,7 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.DAOUsuarioRepository;
 
-
 public class ServletUsuarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,55 +29,69 @@ public class ServletUsuarioController extends HttpServlet {
 		try {
 			String acao = request.getParameter("acao");
 
-			if (acao != null && acao.equalsIgnoreCase("deletarajax")) {
+			// Se a ação não estiver definida, por padrão será listar os usuários
+			if (acao == null || acao.isEmpty()) {
+				acao = "listarUser"; // Define a ação padrão
+			}
+
+			if (acao.equalsIgnoreCase("deletarajax")) {
 				String idUser = request.getParameter("id");
-
 				if (idUser != null && !idUser.isEmpty()) {
-
 					daoUsuarioRepository.deletarUser(idUser);
 					response.getWriter().write("Usuário excluído com sucesso!");
 				}
-
-			} else if (acao != null && acao.equalsIgnoreCase("deletar")) {
+			} else if (acao.equalsIgnoreCase("deletar")) {
 				String idUser = request.getParameter("id");
-
 				if (idUser != null && !idUser.isEmpty()) {
 					daoUsuarioRepository.deletarUser(idUser);
+					
+					List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+					request.setAttribute("modelLogins", modelLogins);	
+					
 					request.setAttribute("msg", "Usuario excluído com sucesso!");
+					request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+					
+					
 				}
-
-			} else if (acao != null && acao.equalsIgnoreCase("buscarUsuarioAjax")) {
+				
+			} else if (acao.equalsIgnoreCase("buscarUsuarioAjax")) {
 				String nomeBusca = request.getParameter("nomeBusca");
-
 				if (nomeBusca != null && !nomeBusca.isEmpty()) {
 					List<ModelLogin> dadosJsonUser = daoUsuarioRepository.consultaUsuarioList(nomeBusca);
-
 					ObjectMapper mapper = new ObjectMapper();
 					String json = mapper.writeValueAsString(dadosJsonUser);
 					response.getWriter().write(json);
 				}
-			}
-
-			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarEditar")) {
+				
+			} else if (acao.equalsIgnoreCase("buscarEditar")) {
+				
 				String id = request.getParameter("id");
+				
 				ModelLogin modelLogin = daoUsuarioRepository.consultaUsuarioID(id);
-
+				
+				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+				request.setAttribute("modelLogins", modelLogins);				
+				
 				request.setAttribute("msg", "Usuario em Edição");
 				request.setAttribute("modelLogin", modelLogin);
 				request.getRequestDispatcher("/principal/usuario.jsp").forward(request, response);
 				
-			} else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarUser")) {
+			} else if (acao.equalsIgnoreCase("listarUser")) {
+				
 				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
-
-				request.setAttribute("msg", "Usuarios Carregados");
+				
+				request.setAttribute("msg", "Usuarios carregados");
 				request.setAttribute("modelLogins", modelLogins);
+				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+				
+			} else {
+				// Redirecionar para página padrão
+				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+				request.setAttribute("modelLogins", modelLogins);	
 				request.getRequestDispatcher("/principal/usuario.jsp").forward(request, response);
-			} else
-				request.getRequestDispatcher("/principal/usuario.jsp").forward(request, response);
+			}
 
-		} catch (
-
-		Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
 			request.setAttribute("msg", e.getMessage());
@@ -117,6 +130,9 @@ public class ServletUsuarioController extends HttpServlet {
 				modelLogin = daoUsuarioRepository.gravarUsuario(modelLogin);
 			}
 
+			List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+			request.setAttribute("modelLogins", modelLogins);
+			
 			request.setAttribute("msg", msg);
 			request.setAttribute("modelLogin", modelLogin);
 			request.getRequestDispatcher("/principal/usuario.jsp").forward(request, response);
