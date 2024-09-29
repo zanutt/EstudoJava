@@ -63,7 +63,7 @@
 																	value="${modelLogin.nome}"> <span
 																	class="form-bar"></span> <label class="float-label">Nome
 																	completo</label>
-															</div>
+															</div>															
 															<div class="form-group form-default">
 																<input type="text" name="login" id="login"
 																	class="form-control" required="required"
@@ -84,6 +84,17 @@
 																	autocomplete="off" value="${modelLogin.senha}">
 																<span class="form-bar"></span> <label
 																	class="float-label">Senha</label>
+															</div>
+															<div class="form-group form-default form-static-label">
+																<span class="form-bar"></span>																
+															<select class="form-control"
+																aria-label="Default select example" name="perfil">
+																<option disabled="disabled">[Selecione o Perfil]</option>
+																<option value="ADMIN">Admin</option>
+																<option value="SECRETARIA">Secretaria</option>
+																<option value="AUXILIAR">Auxiliar</option>
+															</select>
+															<label  class="float-label">Perfil</label>
 															</div>
 															<button type="button"
 																class="btn btn-primary waves-effect waves-light"
