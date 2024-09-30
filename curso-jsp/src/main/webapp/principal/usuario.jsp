@@ -1,3 +1,4 @@
+<%@page import="model.ModelLogin"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -90,12 +91,64 @@
 															<select class="form-control"
 																aria-label="Default select example" name="perfil">
 																<option disabled="disabled">[Selecione o Perfil]</option>
-																<option value="ADMIN">Admin</option>
-																<option value="SECRETARIA">Secretaria</option>
-																<option value="AUXILIAR">Auxiliar</option>
+																
+																<option value="ADMIN" <%
+																
+																	ModelLogin modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+																
+																	if (modelLogin != null && modelLogin.getPerfil().equals("ADMIN")){
+																	out.print(" ");
+																	out.print("selected=\"selected\"");
+																	out.print(" ");
+																} %>>Admin</option>
+																
+																<option value="SECRETARIA" <%
+																
+																	modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+																
+																	if (modelLogin != null && modelLogin.getPerfil().equals("SECRETARIA")){
+																	out.print(" ");
+																	out.print("selected=\"selected\"");
+																	out.print(" ");
+																} %>>Secretaria</option>
+																
+																<option value="AUXILIAR" <%
+																
+																	modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+																
+																	if (modelLogin != null && modelLogin.getPerfil().equals("AUXILIAR")){
+																	out.print(" ");
+																	out.print("selected=\"selected\"");
+																	out.print(" ");
+																} %>>Auxiliar</option>
 															</select>
 															<label  class="float-label">Perfil</label>
 															</div>
+															<div class="form-group form-default">
+																<input type="radio" name="sexo" value="MASCULINO" <% 
+																
+																modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+																
+																if (modelLogin != null && modelLogin.getSexo().equals("MASCULINO")){
+																	out.print(" ");
+																	out.print("checked=\"checked\"");
+																	out.print(" ");
+																}
+																
+																%>>Masculino 
+																<input type="radio" name="sexo" value="FEMININO" <% 
+																
+																modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+																
+																if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")){
+																	out.print(" ");
+																	out.print("checked=\"checked\"");
+																	out.print(" ");
+																}
+																
+																%> >Feminino
+															</div>
+															
 															<button type="button"
 																class="btn btn-primary waves-effect waves-light"
 																onclick="limparForm();">Novo</button>

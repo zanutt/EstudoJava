@@ -53,3 +53,7 @@ UPDATE public.model_login
 alter table model_login ADD column usuario_id bigint not null default 1;
 alter table model_login ADD constraint usuario_fk foreign key (usuario_id) references model_login (id);	
 	
+	
+	UPDATE public.model_login
+SET perfil = 'AUXILIAR'
+WHERE perfil IS NULL;
