@@ -57,3 +57,7 @@ alter table model_login ADD constraint usuario_fk foreign key (usuario_id) refer
 	UPDATE public.model_login
 SET perfil = 'AUXILIAR'
 WHERE perfil IS NULL;
+
+alter TABLE model_login add column fotouser text;
+
+alter TABLE model_login add column extensaofotouser character varying(10);
