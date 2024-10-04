@@ -7,10 +7,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import model.ModelLogin;
 
 import java.io.IOException;
 import java.util.List;
+
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.jakartaee.commons.compress.utils.IOUtils;
+import java.util.Base64;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -125,6 +130,16 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			modelLogin.setSenha(senha);
 			modelLogin.setPerfil(perfil);
 			modelLogin.setSexo(sexo);
+			
+			Part part = request.getPart("fileFoto"); // Pega o arquivo enviado com o nome 'fileFoto'
+            if (part != null && part.getSize() > 0) { // Verifica se o arquivo existe e tem tamanho
+                byte[] foto = IOUtils.toByteArray(part.getInputStream()); // Converte a imagem em bytes
+                String imagemBase64 = "data:"+ part.getContentType() + ";base64," +  Base64.getEncoder().encodeToString(foto); // Converte para base64    
+                
+                modelLogin.setFotouser(imagemBase64);
+                modelLogin.setExtensaofotouser(part.getContentType().split("\\/")[1]);                
+              
+            }
 
 			if (daoUsuarioRepository.validarLogin(modelLogin.getLogin()) && modelLogin.getId() == null) {
 				msg = "Já Existe um usuario com o mesmo login, informe outro login!";

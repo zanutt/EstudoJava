@@ -61,9 +61,15 @@
 															
 															<div class="form-group form-default input-group mb-4">
 															<div class="input-group-prepend">
-																<img alt="Image User" src="" width="70px">
+																<c:if test="${modelLogin.fotouser != '' && modelLogin.fotouser != null}">
+																	<img alt="Image User" id="fotoembase64" src="${modelLogin.fotouser}" width="70px">
+																	</c:if>
+																
+																<c:if test="${modelLogin.fotouser == '' || modelLogin.fotouser == null}">
+																	<img alt="Image User" id="fotoembase64" src="assets/images/usericon.png" width="70px">
+																</c:if>																
 															</div>																
-																<input type="file" class="form-control-file" style="margin-top:15px; margin-left:5px;" id="exampleFormControlFile"></input>
+																<input type="file" id="fileFoto" name="fileFoto" accept="image/*" onchange="visualizarImg('fotoembase64','fileFoto')" class="form-control-file" style="margin-top:15px; margin-left:5px;" ></input>
 															</div>
 															
 															<div class="form-group form-default">
@@ -259,6 +265,25 @@
 	</div>
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
 	<script type="text/javascript">
+	
+	function visualizarImg(fotoembase64, fileFoto){
+
+		var preview = document.getElementById(fotoembase64); //campo img do html
+		var fileUser = document.getElementById(fileFoto).files[0]; //imagem enviada pelo usuario
+		var reader = new FileReader();
+		
+		reader.onloadend = function (){
+			preview.src = reader.result; //Carrega foto na tela
+		}
+		
+		if (fileUser){
+			reader.readAsDataURL(fileUser);// Previews da imagem
+		}else{
+			preview.src='';// carrega vazio
+		}
+	    
+	}
+	
 	function verEditar(id) {
 	    var urlAction = document.getElementById('formUser').action;
 	    window.location.href = urlAction + '?acao=buscarEditar&id=' + id;
