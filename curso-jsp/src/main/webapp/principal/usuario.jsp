@@ -80,7 +80,56 @@
 																	value="${modelLogin.nome}"> <span
 																	class="form-bar"></span> <label class="float-label">Nome
 																	completo</label>
-															</div>															
+															</div>
+															
+															<div class="form-group form-default">
+																<input onblur="pesquisaCep()" type="text" name="cep" id="cep"
+																	class="form-control" required="required"
+																	autocomplete="off" value="${modelLogin.cep}">
+																<span class="form-bar"></span> <label
+																	class="float-label">CEP</label>
+															</div>
+															
+															<div class="form-group form-default">
+																<input type="text" name="logradouro" id="logradouro"
+																	class="form-control" required="required"
+																	autocomplete="off" value="${modelLogin.logradouro}">
+																<span class="form-bar"></span> <label
+																	class="float-label">Logradouro</label>
+															</div>	
+															
+															<div class="form-group form-default">
+																<input type="text" name="bairro" id="bairro"
+																	class="form-control" required="required"
+																	autocomplete="off" value="${modelLogin.bairro}">
+																<span class="form-bar"></span> <label
+																	class="float-label">Bairro</label>
+															</div>	
+															
+															<div class="form-group form-default">
+																<input type="text" name="localidade" id="localidade"
+																	class="form-control" required="required"
+																	autocomplete="off" value="${modelLogin.localidade}">
+																<span class="form-bar"></span> <label
+																	class="float-label">Localidade</label>
+															</div>	
+															
+															<div class="form-group form-default">
+																<input type="text" name="uf" id="uf"
+																	class="form-control" required="required"
+																	autocomplete="off" value="${modelLogin.uf}">
+																<span class="form-bar"></span> <label
+																	class="float-label">UF</label>
+															</div>	
+															
+															<div class="form-group form-default">
+																<input type="text" name="numero" id="numero"
+																	class="form-control" required="required"
+																	autocomplete="off" value="${modelLogin.numero}">
+																<span class="form-bar"></span> <label
+																	class="float-label">Numero</label>
+															</div>
+																													
 															<div class="form-group form-default">
 																<input type="text" name="login" id="login"
 																	class="form-control" required="required"
@@ -268,6 +317,27 @@
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
 	<script type="text/javascript">
 	
+	function limpa_formulário_cep() {
+            $("#logradouro").val("");
+            $("#bairro").val("");
+            $("#localidade").val("");
+            $("#uf").val("");            
+        }
+	
+	function pesquisaCep(){
+		var cep = $("#cep").val();
+		
+		$.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+		    if (!("erro" in dados)) {                        
+                        $("#logradouro").val(dados.logradouro);
+                        $("#bairro").val(dados.bairro);
+                        $("#localidade").val(dados.localidade);
+                        $("#uf").val(dados.uf);                        
+                    }                     
+		});
+	}
+	
 	function visualizarImg(fotoembase64, fileFoto){
 
 		var preview = document.getElementById(fotoembase64); //campo img do html
@@ -364,6 +434,8 @@
 	    }
 	}
 
+
+	
 	function limparForm() {
 	    var elementos = document.getElementById("formUser").elements;/*Retorna os elementos html dentro do form*/
 	    for (p = 0; p < elementos.length; p++) {

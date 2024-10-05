@@ -21,7 +21,7 @@ public class DAOUsuarioRepository {
 
 		if (objeto.isNovo()) {/* Grava um novo */
 
-			String sql = "INSERT INTO model_login(login, senha, nome, email, usuario_id, perfil, sexo) VALUES (?, ?, ?, ?, ?, ?, ?);";
+			String sql = "INSERT INTO model_login(login, senha, nome, email, usuario_id, perfil, sexo, cep, logradouro, bairro, localidade, uf, numero) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement statement = connection.prepareStatement(sql);
 
 			statement.setString(1, objeto.getLogin());
@@ -31,7 +31,13 @@ public class DAOUsuarioRepository {
 			statement.setLong(5, userLogado);
 			statement.setString(6, objeto.getPerfil());
 			statement.setString(7, objeto.getSexo());
-			
+			statement.setString(8, objeto.getCep());
+			statement.setString(9, objeto.getLogradouro());
+			statement.setString(10, objeto.getBairro());
+			statement.setString(11, objeto.getLocalidade());
+			statement.setString(12, objeto.getUf());
+			statement.setString(13, objeto.getNumero());
+						
 
 			statement.execute();
 			connection.commit();
@@ -47,7 +53,7 @@ public class DAOUsuarioRepository {
 			}
 			
 		} else {
-			String sql = "UPDATE model_login SET login=?, senha=?, nome=?, email=?, perfil=?, sexo=? WHERE id=" + objeto.getId() + ";";
+			String sql = "UPDATE model_login SET login=?, senha=?, nome=?, email=?, perfil=?, sexo=?, cep=?, logradouro=?, bairro=?, localidade=?, uf=?, numero=? WHERE id=" + objeto.getId() + ";";
 			PreparedStatement statement = connection.prepareStatement(sql);
 
 			statement.setString(1, objeto.getLogin());
@@ -56,6 +62,12 @@ public class DAOUsuarioRepository {
 			statement.setString(4, objeto.getEmail());
 			statement.setString(5, objeto.getPerfil());
 			statement.setString(6, objeto.getSexo());
+			statement.setString(7, objeto.getCep());
+			statement.setString(8, objeto.getLogradouro());
+			statement.setString(9, objeto.getBairro());
+			statement.setString(10, objeto.getLocalidade());
+			statement.setString(11, objeto.getUf());
+			statement.setString(12, objeto.getNumero());
 
 			statement.executeUpdate();
 			connection.commit();
@@ -149,6 +161,13 @@ public class DAOUsuarioRepository {
 			modelLogin.setPerfil(resultado.getString("perfil"));
 			modelLogin.setSexo(resultado.getString("sexo"));
 			modelLogin.setFotouser(resultado.getString("fotouser"));
+			
+			modelLogin.setCep(resultado.getString("cep"));
+			modelLogin.setLogradouro(resultado.getString("logradouro"));
+			modelLogin.setBairro(resultado.getString("bairro"));
+			modelLogin.setLocalidade(resultado.getString("localidade"));
+			modelLogin.setUf(resultado.getString("uf"));
+			modelLogin.setNumero(resultado.getString("numero"));
 		}
 
 		return modelLogin;
@@ -174,6 +193,12 @@ public class DAOUsuarioRepository {
 			modelLogin.setPerfil(resultado.getString("perfil"));
 			modelLogin.setSexo(resultado.getString("sexo"));
 			modelLogin.setFotouser(resultado.getString("fotouser"));
+			modelLogin.setCep(resultado.getString("cep"));
+			modelLogin.setLogradouro(resultado.getString("logradouro"));
+			modelLogin.setBairro(resultado.getString("bairro"));
+			modelLogin.setLocalidade(resultado.getString("localidade"));
+			modelLogin.setUf(resultado.getString("uf"));
+			modelLogin.setNumero(resultado.getString("numero"));
 		}
 
 		return modelLogin;
@@ -198,6 +223,12 @@ public class DAOUsuarioRepository {
 			modelLogin.setPerfil(resultado.getString("perfil"));
 			modelLogin.setSexo(resultado.getString("sexo"));
 			modelLogin.setFotouser(resultado.getString("fotouser"));
+			modelLogin.setCep(resultado.getString("cep"));
+			modelLogin.setLogradouro(resultado.getString("logradouro"));
+			modelLogin.setBairro(resultado.getString("bairro"));
+			modelLogin.setLocalidade(resultado.getString("localidade"));
+			modelLogin.setUf(resultado.getString("uf"));
+			modelLogin.setNumero(resultado.getString("numero"));
 		}
 
 		return modelLogin;
@@ -225,6 +256,12 @@ public class DAOUsuarioRepository {
 			modelLogin.setSexo(resultado.getString("sexo"));
 			modelLogin.setFotouser(resultado.getString("fotouser"));
 			modelLogin.setExtensaofotouser(resultado.getString("extensaofotouser"));
+			modelLogin.setCep(resultado.getString("cep"));
+			modelLogin.setLogradouro(resultado.getString("logradouro"));
+			modelLogin.setBairro(resultado.getString("bairro"));
+			modelLogin.setLocalidade(resultado.getString("localidade"));
+			modelLogin.setUf(resultado.getString("uf"));
+			modelLogin.setNumero(resultado.getString("numero"));
 		}
 
 		return modelLogin;
