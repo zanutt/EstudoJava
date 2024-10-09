@@ -16,10 +16,11 @@
         <filter-name>FilterAutenticacao</filter-name>
         <filter-class>filter.FilterAutenticacao</filter-class>
     </filter>
-    
+
     <filter-mapping>
         <filter-name>FilterAutenticacao</filter-name>
-        <url-pattern>/FilterAutenticacao</url-pattern>
+        <!-- Intercepta todas as requisições que vêm de /principal/ -->
+        <url-pattern>/principal/*</url-pattern>
     </filter-mapping>
 
     <!-- Mapeamento do servlet ServletUsuarioController -->
